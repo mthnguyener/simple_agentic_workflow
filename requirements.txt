@@ -1,0 +1,11 @@
+# Required
+click~=8.1.7
+python-dotenv
+pyyaml
+yapf
+
+# Providers
+google-genai~=1.5.0
+groq~=0.20.0
+ollama~=0.4.7
+openai~=1.68.2
