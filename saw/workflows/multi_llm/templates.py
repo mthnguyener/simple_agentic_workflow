@@ -17,5 +17,5 @@ First explain your reasoning, then provide your selection in this XML format:
 The chosen selection from the above routes.
 </selection>
 
-Input: {query}
+Input: {prompt}
 """

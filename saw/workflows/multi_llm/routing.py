@@ -10,16 +10,16 @@ from saw.workflows.utils import apply_functions
 
 
 def route(
-        query: dict,
+        prompt: dict,
         reasoning_prompt: str,
         route_prompt: str,
         routes: dict[str, dict],
         **params: dict
 ) -> str:
-    """Routes a query to the most appropriate model call based on the content.
+    """Routes a prompt to the most appropriate model call based on the content.
 
     Args:
-        query (dict): The input query details.
+        prompt (dict): The input prompt details.
         reasoning_prompt (str): The template for the reasoning prompt.
         route_prompt (str): The template for the route prompt.
         routes (dict[str, dict]): A dictionary mapping route keys to
@@ -35,15 +35,16 @@ def route(
         routes=list(routes.keys()),
         route_prompt=route_prompt,
         reasoning_prompt=reasoning_prompt,
-        query=query["prompt"]
+        prompt=prompt["prompt"]
     )
 
-    query_details = apply_functions(prompt_details=query)
+    prompt_details = apply_functions(prompt_details=prompt)
     route_response = model_call(prompt=selector_prompt,
-                                provider=query_details.provider,
-                                model=query_details.model,
-                                system_prompt=query_details.system_prompt,
+                                provider=prompt_details.provider,
+                                model=prompt_details.model,
+                                system_prompt=prompt_details.system_prompt,
                                 **params)
+
     reasoning = extract_xml(route_response, "reasoning")
     selection = extract_xml(route_response, "selection").strip().lower()
 
@@ -51,13 +52,13 @@ def route(
     print(f"Reasoning: {reasoning}")
     print(f"Selection: {selection}")
 
-    # Process query with selected specialized prompt
+    # Process prompt with selected specialized prompt
     selected_prompt_details = routes[selection]
     processed_details = apply_functions(prompt_details=selected_prompt_details)
     print(f"Model: {processed_details.provider}-{processed_details.model}")
 
     result = model_call(
-        prompt=f"{processed_details.prompt}\nQuery: {query["prompt"]}",
+        prompt=f"{processed_details.prompt}\nQuery: {prompt["prompt"]}",
         provider=processed_details.provider,
         model=processed_details.model,
         system_prompt=processed_details.system_prompt,
@@ -68,16 +69,16 @@ def route(
 
 
 async def aroute(
-        query: dict,
+        prompt: dict,
         reasoning_prompt: str,
         route_prompt: str,
         routes: dict[str, dict],
         **params: dict
 ) -> str:
-    """Asynchronously routes a query to the most appropriate model call.
+    """Asynchronously routes a prompt to the most appropriate model call.
 
     Args:
-        query (dict): The input query details.
+        prompt (dict): The input prompt details.
         reasoning_prompt (str): The template for the reasoning prompt.
         route_prompt (str): The template for the route prompt.
         routes (dict[str, dict]): A dictionary mapping route keys to
@@ -93,15 +94,17 @@ async def aroute(
         routes=list(routes.keys()),
         route_prompt=route_prompt,
         reasoning_prompt=reasoning_prompt,
-        query=query["prompt"]
+        prompt=prompt["prompt"]
     )
 
-    query_details = apply_functions(prompt_details=query)
-    route_response = await amodel_call(prompt=selector_prompt,
-                                provider=query_details.provider,
-                                model=query_details.model,
-                                system_prompt=query_details.system_prompt,
-                                **params)
+    prompt_details = apply_functions(prompt_details=prompt)
+    route_response = await amodel_call(
+        prompt=selector_prompt,
+        provider=prompt_details.provider,
+        model=prompt_details.model,
+        system_prompt=prompt_details.system_prompt,
+        **params
+    )
 
     reasoning = extract_xml(route_response, "reasoning")
     selection = extract_xml(route_response, "selection").strip().lower()
@@ -110,13 +113,13 @@ async def aroute(
     print(f"Reasoning: {reasoning}")
     print(f"Selection: {selection}")
 
-    # Process query with selected specialized prompt
+    # Process prompt with selected specialized prompt
     selected_prompt_details = routes[selection]
     processed_details = apply_functions(prompt_details=selected_prompt_details)
     print(f"Model: {processed_details.provider}-{processed_details.model}")
 
     result = await amodel_call(
-        prompt=f"{processed_details.prompt}\nQuery: {query["prompt"]}",
+        prompt=f"{processed_details.prompt}\nQuery: {prompt["prompt"]}",
         provider=processed_details.provider,
         model=processed_details.model,
         system_prompt=processed_details.system_prompt,

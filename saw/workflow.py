@@ -3,7 +3,7 @@
 """ Agent Workflow Module
 
 """
-from typing import List, Dict, Any, Optional, Union
+from typing import Any, Callable, Dict, List, Optional, Union
 
 from saw.workflows.multi_llm.chaining import chain, achain
 from saw.workflows.multi_llm.parallelization import parallel, aparallel
@@ -13,19 +13,22 @@ from saw.workflows.adaptive_llm.adaptive import adaptive, aadaptive
 
 
 class AgentWorkflow:
-    def __init__(self, operation: str):
+    def __init__(self, operation: str,
+                 custom_function: Optional[Callable] = None):
         """
         Initializes an AgentWorkflow.
 
         Attributes:
             operation (str): The operation to perform.
+            custom_function (Optional[Callable]): A custom function to execute.
         """
         self.operation = operation
+        self.custom_function = custom_function
 
     def _execute_workflow(
             self,
             query: Union[Dict, str] = None,
-            prompts: Optional[List[Dict[str, Any]]] = None,
+            prompts: Optional[Union[dict, List[Dict[str, Any]]]] = None,
             reasoning_prompt: str = None,
             route_prompt: str = None,
             routes: Optional[Dict[str, Dict[str, Any]]] = None,
@@ -37,7 +40,8 @@ class AgentWorkflow:
 
         Args:
             query (dict | str): The input query.
-            prompts (Optional[List[Dict[str, Any]]]): Prompts for chaining.
+            prompts (Optional[Union[dict, List[Dict[str, Any]]]]):
+                Prompts for chaining.
             reasoning_prompt (str): The template for the reasoning prompt.
             route_prompt (str): The template for the route prompt.
             routes (Optional[Dict[str, Dict[str, Any]]]): Routes for routing.
@@ -48,26 +52,28 @@ class AgentWorkflow:
             Union[Dict, str, List[tuple[str, Any]], tuple[str, list[dict]]]:
                 The result of the operation.
         """
-        if self.operation == "chaining":
+        if self.operation == "custom" and self.custom_function:
+            return self.custom_function(prompts=prompts, **params)
+        elif self.operation == "chaining":
             return chain(query=query, prompts=prompts, **params)
         elif self.operation == "parallelization":
             return parallel(query=query, prompts=prompts,
                             n_workers=n_workers, **params)
         elif self.operation == "routing":
-            return route(query=query, reasoning_prompt=reasoning_prompt,
+            return route(prompt=prompts, reasoning_prompt=reasoning_prompt,
                          route_prompt=route_prompt, routes=routes, **params)
-        elif self.operation == "symphonic":
-            return symphony(
-                composer_details=params.get("composer_details", {}),
-                worker_details=params.get("worker_details", {})
-            )
         elif self.operation == "adaptive":
             return adaptive(
                 evaluator_prompt_details=params.get("evaluator_prompt", ""),
                 generator_prompt_details=params.get("generator_prompt", ""),
                 ratings=params.get("ratings", []),
                 task=params.get("task", ""),
-                max_interations=params.get("max_interations", None)
+                max_iterations=params.get("max_iterations", None)
+            )
+        elif self.operation == "symphonic":
+            return symphony(
+                composer_details=params.get("composer_details", {}),
+                worker_details=params.get("worker_details", {})
             )
         else:
             raise ValueError(f"Unknown operation: {self.operation}")
@@ -75,7 +81,7 @@ class AgentWorkflow:
     async def _aexecute_workflow(
             self,
             query: Union[Dict, str] = None,
-            prompts: Optional[List[Dict[str, Any]]] = None,
+            prompts: Optional[Union[dict, List[Dict[str, Any]]]] = None,
             reasoning_prompt: str = None,
             route_prompt: str = None,
             routes: Optional[Dict[str, Dict[str, Any]]] = None,
@@ -86,7 +92,8 @@ class AgentWorkflow:
 
         Args:
             query (dict | str): The input query.
-            prompts (Optional[List[Dict[str, Any]]]): Prompts for chaining.
+            prompts (Optional[Union[dict, List[Dict[str, Any]]]]):
+                Prompts for chaining.
             reasoning_prompt (str): The template for the reasoning prompt.
             route_prompt (str): The template for the route prompt.
             routes (Optional[Dict[str, Dict[str, Any]]]): Routes for routing.
@@ -96,27 +103,29 @@ class AgentWorkflow:
             Union[Dict, str, List[tuple[str, Any]], tuple[str, list[dict]]]:
                 The result of the operation.
         """
-        if self.operation == "chaining":
+        if self.operation == "custom" and self.custom_function:
+            return await self.custom_function(prompts=prompts, **params)
+        elif self.operation == "chaining":
             return await achain(query=query, prompts=prompts, **params)
         elif self.operation == "parallelization":
             return await aparallel(query=query, prompts=prompts, **params)
         elif self.operation == "routing":
-            return await aroute(query=query,
+            return await aroute(prompt=prompts,
                                 reasoning_prompt=reasoning_prompt,
                                 route_prompt=route_prompt,
                                 routes=routes, **params)
-        elif self.operation == "symphonic":
-            return await asymphony(
-                composer_details=params.get("composer_details", {}),
-                worker_details=params.get("worker_details", {})
-            )
         elif self.operation == "adaptive":
             return await aadaptive(
                 evaluator_prompt_details=params.get("evaluator_prompt", ""),
                 generator_prompt_details=params.get("generator_prompt", ""),
                 ratings=params.get("ratings", []),
                 task=params.get("task", ""),
-                max_interations=params.get("max_interations", None)
+                max_iterations=params.get("max_iterations", None)
+            )
+        elif self.operation == "symphonic":
+            return await asymphony(
+                composer_details=params.get("composer_details", {}),
+                worker_details=params.get("worker_details", {})
             )
         else:
             raise ValueError(f"Unknown operation: {self.operation}")
@@ -124,7 +133,7 @@ class AgentWorkflow:
     def execute(
             self,
             query: Union[Dict, str] = None,
-            prompts: Optional[List[Dict[str, Any]]] = None,
+            prompts: Optional[Union[dict, List[Dict[str, Any]]]] = None,
             reasoning_prompt: str = None,
             route_prompt: str = None,
             routes: Optional[Dict[str, Dict[str, Any]]] = None,
@@ -138,7 +147,8 @@ class AgentWorkflow:
         Args:
             async_mode (bool): Whether to execute the workflow asynchronously.
             query (dict | str): The input query.
-            prompts (Optional[List[Dict[str, Any]]]): Prompts for chaining.
+            prompts (Optional[Union[dict, List[Dict[str, Any]]]]):
+                Prompts for chaining.
             reasoning_prompt (str): The template for the reasoning prompt.
             route_prompt (str): The template for the route prompt.
             routes (Optional[Dict[str, Dict[str, Any]]]): Routes for routing.

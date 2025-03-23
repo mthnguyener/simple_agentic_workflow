@@ -54,7 +54,7 @@ async def main():
         generator_prompt=generator_prompt,
         ratings=ratings,
         task=task,
-        max_interations=5,
+        max_iterations=5,
         async_mode=True
     )
     print(result)

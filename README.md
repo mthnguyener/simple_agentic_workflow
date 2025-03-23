@@ -1,5 +1,5 @@
 # Simple Agentic Workflow
-A Python SDK for fast, simple agent workflows.
+A Python SDK for fast, simple agentic workflows.
 
 ## Getting Started With the New Project
 Simple Agentic Workflow is a fully functioning Python package that may be installed using 
@@ -39,7 +39,7 @@ For more examples and detailed usage, please refer to the documentation or
 the example notebooks provided in the [notebooks](notebooks) directory.
 
 ## References
-- [Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)
+1. Anthropic. "[Building effective agents](https://www.anthropic.com/engineering/building-effective-agents)". (2024).
 
 ## Acknowledgements
 If you find this project helpful in your work and decide to mention or reference 

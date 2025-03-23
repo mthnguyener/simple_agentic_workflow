@@ -186,7 +186,7 @@ async def _aevaluator(prompt_details: dict, content: str,
 def adaptive(evaluator_prompt_details: dict,
              generator_prompt_details: dict,
              ratings: list[str], task: str,
-             max_interations: int = None) -> tuple[str, list[dict]]:
+             max_iterations: int = None) -> tuple[str, list[dict]]:
     """
     Keep generating and evaluating until requirements are met.
 
@@ -195,7 +195,7 @@ def adaptive(evaluator_prompt_details: dict,
         generator_prompt_details (dict): The prompt details for generation.
         ratings (list[str]): The possible ratings for evaluation.
         task (str): The task to evaluate a solution for.
-        max_interations (int): The maximum number of iterations.
+        max_iterations (int): The maximum number of iterations.
 
     Returns:
         tuple[str, list[dict]]: The generated solution and chain of thought.
@@ -222,7 +222,7 @@ def adaptive(evaluator_prompt_details: dict,
     memory.append(result)
     chain_of_thought.append({"thoughts": thoughts, "result": result})
 
-    while max_interations is None or loop_count < max_interations:
+    while max_iterations is None or loop_count < max_iterations:
         print(f"\n=== ITERATION: {loop_count + 1} ===\n")
         evaluation, feedback = _evaluator(
             prompt_details=evaluator_prompt_details, content=result, task=task)
@@ -248,7 +248,7 @@ def adaptive(evaluator_prompt_details: dict,
 async def aadaptive(evaluator_prompt_details: dict,
                     generator_prompt_details: dict,
                     ratings: list[str], task: str,
-                    max_interations: int = None) -> tuple[str, list[dict]]:
+                    max_iterations: int = None) -> tuple[str, list[dict]]:
     """
     Asynchronously keep generating and evaluating until requirements are met.
 
@@ -257,7 +257,7 @@ async def aadaptive(evaluator_prompt_details: dict,
         generator_prompt_details (dict): The prompt details for generation.
         ratings (list[str]): The possible ratings for evaluation.
         task (str): The task to evaluate a solution for.
-        max_interations (int): The maximum number of iterations.
+        max_iterations (int): The maximum number of iterations.
 
     Returns:
         tuple[str, list[dict]]: The generated solution and chain of thought.
@@ -284,7 +284,7 @@ async def aadaptive(evaluator_prompt_details: dict,
     memory.append(result)
     chain_of_thought.append({"thoughts": thoughts, "result": result})
 
-    while max_interations is None or loop_count < max_interations:
+    while max_iterations is None or loop_count < max_iterations:
         print(f"\n=== ITERATION: {loop_count + 1} ===\n")
         evaluation, feedback = await _aevaluator(
             prompt_details=evaluator_prompt_details,
