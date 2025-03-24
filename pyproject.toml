@@ -1,0 +1,77 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simple-agentic-workflow"
+version = "0.1.0"
+description = "A Python SDK for fast, simple agent stacks"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "click",
+    "google-genai",
+    "ollama",
+    "pyyaml",
+    "yapf"
+]
+license = { text = "MIT License" }
+authors = [
+    { name = "Minh Nguyen", email = "mthnguyen@outlook.com" }
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: LLMs :: Agents :: GenAI"
+]
+keywords = ["sdk", "python", "agent", "llm", "genai"]
+
+[project.urls]
+homepage = "https://github.com/mthnguyener/simple_agentic_workflow"
+repository = "https://github.com/mthnguyener/simple_agentic_workflow.git"
+documentation = "https://github.com/mthnguyener/simple_agentic_workflow/tree/main/docs"
+
+[project.optional-dependencies]
+all = [
+    "setuptools", "wheel", "Faker", "git-lint", "pytest", "pytest-cov",
+    "pytest-pycodestyle", "pytest-sugar", "sphinx", "sphinx_rtd_theme",
+    "jupyter", "jupyterlab>=3", "kaleido", "protobuf<4", "memory_profiler",
+    "snakeviz"
+]
+build = [
+    "setuptools",
+    "wheel",
+    "Faker",
+    "git-lint",
+    "pytest",
+    "pytest-cov",
+    "pytest-pycodestyle",
+    "pytest-sugar"
+]
+docs = ["sphinx", "sphinx_rtd_theme"]
+jupyter = ["jupyter", "jupyterlab>=3", "kaleido", "protobuf<4"]
+profile = ["memory_profiler", "snakeviz"]
+test = [
+    "Faker",
+    "git-lint",
+    "pytest",
+    "pytest-cov",
+    "pytest-pycodestyle",
+    "pytest-sugar"
+]
+
+[tool.setuptools.packages.find]
+where = ["saw"]
+exclude = ["applications*", "data", "docker", "docs", "notebooks", "wheels", "*tests"]
+
+[tool.setuptools]
+include-package-data = true
+
+[project.scripts]
+count = "saw.cli:count"

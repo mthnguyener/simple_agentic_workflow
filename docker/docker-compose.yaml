@@ -1,0 +1,56 @@
+networks:
+  saw-network:
+    name: ${USER_NAME:-default}-saw-network
+
+services:
+  saw_nginx:
+    container_name: ${USER_NAME:-default}_saw_nginx
+    env_file: .env
+    environment:
+      PORT_NGINX: ${PORT_NGINX}
+    image: nginx:alpine
+    networks:
+    - saw-network
+    ports:
+    - ${PORT_NGINX}:80
+    restart: always
+    volumes:
+    - ../docs/_build/html:/usr/share/nginx/html:ro
+
+  saw_python:
+    build:
+      context: ..
+      dockerfile: docker/pytorch.Dockerfile
+      shm_size: 1g
+    cap_add:
+    - SYS_PTRACE
+    command: >
+      /bin/bash -c "ollama serve"
+    container_name: ${USER_NAME:-default}_saw_python
+    deploy:
+      resources:
+        reservations:
+          devices:
+          - capabilities:
+            - gpu
+    env_file: .env
+    environment:
+    - PORT_GOOGLE=${PORT_GOOGLE}
+    - PORT_JUPYTER=${PORT_JUPYTER}
+    - PORT_PROFILE=${PORT_PROFILE}
+    image: ${USER_NAME:-default}_saw_python
+    ipc: host
+    networks:
+    - saw-network
+    ports:
+    - ${PORT_GOOGLE}:${PORT_GOOGLE}
+    - ${PORT_JUPYTER}:${PORT_JUPYTER}
+    - ${PORT_PROFILE}:${PORT_PROFILE}
+    restart: always
+    shm_size: 24g
+    tty: true
+    ulimits:
+      memlock: -1
+    volumes:
+    - ..:/usr/src/saw
+    - ${DATA_DIR}:/usr/src/saw/data
