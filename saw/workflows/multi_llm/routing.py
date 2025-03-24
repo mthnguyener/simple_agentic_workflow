@@ -6,7 +6,7 @@
 from saw.core.model_interface import model_call, amodel_call
 from saw.core.processor import extract_xml
 from saw.workflows.multi_llm.templates import SELECTOR_TEMPLATE
-from saw.workflows.utils import apply_functions
+from saw.workflows.utils import apply_functions, aapply_functions
 
 
 def route(
@@ -38,11 +38,12 @@ def route(
         prompt=prompt["prompt"]
     )
 
-    prompt_details = apply_functions(prompt_details=prompt)
-    route_response = model_call(prompt=selector_prompt,
-                                provider=prompt_details.provider,
-                                model=prompt_details.model,
-                                system_prompt=prompt_details.system_prompt,
+    selector_processed = apply_functions(selector_prompt,
+                                         functions=prompt["functions"])
+    route_response = model_call(prompt=selector_processed,
+                                provider=prompt["provider"],
+                                model=prompt["model"],
+                                system_prompt=prompt["system_prompt"],
                                 **params)
 
     reasoning = extract_xml(route_response, "reasoning")
@@ -54,14 +55,18 @@ def route(
 
     # Process prompt with selected specialized prompt
     selected_prompt_details = routes[selection]
-    processed_details = apply_functions(prompt_details=selected_prompt_details)
-    print(f"Model: {processed_details.provider}-{processed_details.model}")
+    selected_processed = apply_functions(
+        prompt=selected_prompt_details["prompt"],
+        functions=selected_prompt_details["functions"]
+    )
+    print(f"Model: {selected_prompt_details["provider"]}-"
+          f"{selected_prompt_details["model"]}")
 
     result = model_call(
-        prompt=f"{processed_details.prompt}\nQuery: {prompt["prompt"]}",
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt,
+        prompt=f"{selected_processed}\nQuery: {prompt["prompt"]}",
+        provider=selected_prompt_details["provider"],
+        model=selected_prompt_details["model"],
+        system_prompt=selected_prompt_details["system_prompt"],
         **params
     )
     print(f"Result: {result}")
@@ -97,12 +102,13 @@ async def aroute(
         prompt=prompt["prompt"]
     )
 
-    prompt_details = apply_functions(prompt_details=prompt)
+    selector_processed = await aapply_functions(prompt=selector_prompt,
+                                                functions=prompt["functions"])
     route_response = await amodel_call(
-        prompt=selector_prompt,
-        provider=prompt_details.provider,
-        model=prompt_details.model,
-        system_prompt=prompt_details.system_prompt,
+        prompt=selector_processed,
+        provider=prompt["provider"],
+        model=prompt["model"],
+        system_prompt=prompt["system_prompt"],
         **params
     )
 
@@ -115,14 +121,18 @@ async def aroute(
 
     # Process prompt with selected specialized prompt
     selected_prompt_details = routes[selection]
-    processed_details = apply_functions(prompt_details=selected_prompt_details)
-    print(f"Model: {processed_details.provider}-{processed_details.model}")
+    selected_processed = await aapply_functions(
+        prompt=selected_prompt_details["prompt"],
+        functions=selected_prompt_details["functions"]
+    )
+    print(f"Model: {selected_prompt_details["provider"]}-"
+          f"{selected_prompt_details["model"]}")
 
     result = await amodel_call(
-        prompt=f"{processed_details.prompt}\nQuery: {prompt["prompt"]}",
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt,
+        prompt=f"{selected_processed}\nQuery: {prompt["prompt"]}",
+        provider=selected_prompt_details["provider"],
+        model=selected_prompt_details["model"],
+        system_prompt=selected_prompt_details["system_prompt"],
         **params
     )
     print(f"Result: {result}")

@@ -7,7 +7,7 @@ from saw.core.model_interface import model_call, amodel_call
 from saw.core.processor import extract_xml
 from saw.workflows.adaptive_llm.templates import (EVALUATOR_PROMPT,
                                                   GENERATOR_PROMPT, TASK)
-from saw.workflows.utils import apply_functions
+from saw.workflows.utils import apply_functions, aapply_functions
 
 DEFAULT_GENERATOR_PROMPT = ("You are an expert assistant with vast knowledge. "
                             "You are given a "
@@ -75,13 +75,16 @@ def _generator(prompt_details: dict, task: str,
     Returns:
         tuple[str, str]: The thoughts and generated solution.
     """
-    processed_details = apply_functions(prompt_details=prompt_details)
-    full_prompt = _compile_full_prompt(processed_details.prompt, task, context)
+    processed_prompt = apply_functions(
+        prompt=prompt_details["prompt"],
+        functions=prompt_details.get("functions")
+    )
+    full_prompt = _compile_full_prompt(processed_prompt, task, context)
     generator_response = model_call(
         prompt=full_prompt,
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt
+        provider=prompt_details["provider"],
+        model=prompt_details["model"],
+        system_prompt=prompt_details["system_prompt"]
     )
     return _compile_generator_response(generator_response)
 
@@ -99,13 +102,16 @@ async def _agenerator(prompt_details: dict, task: str,
     Returns:
         tuple[str, str]: The thoughts and generated solution.
     """
-    processed_details = apply_functions(prompt_details=prompt_details)
-    full_prompt = _compile_full_prompt(processed_details.prompt, task, context)
+    processed_prompt = await aapply_functions(
+        prompt=prompt_details["prompt"],
+        functions=prompt_details["functions"]
+    )
+    full_prompt = _compile_full_prompt(processed_prompt, task, context)
     generator_response = await amodel_call(
         prompt=full_prompt,
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt
+        provider=prompt_details["provider"],
+        model=prompt_details["model"],
+        system_prompt=prompt_details["system_prompt"]
     )
     return _compile_generator_response(generator_response)
 
@@ -123,17 +129,18 @@ def _evaluator(prompt_details: dict, content: str,
     Returns:
         tuple[str, str]: The evaluation and feedback.
     """
-    processed_details = apply_functions(prompt_details=prompt_details)
-    full_prompt = (f"{processed_details.prompt}. "
+    processed_prompt = apply_functions(prompt=prompt_details["prompt"],
+                                       functions=prompt_details["functions"])
+    full_prompt = (f"{processed_prompt}. "
                    f"Feedback is required so you must explain how "
                    f"the solution meets or does not meet the requirements\n"
                    f"Original task: {task}\n"
                    f"Content to evaluate: {content}")
     evaluator_response = model_call(
         prompt=full_prompt,
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt
+        provider=prompt_details["provider"],
+        model=prompt_details["model"],
+        system_prompt=prompt_details["system_prompt"]
     )
     print(f"Evaluator Response: {evaluator_response}")
     evaluation = extract_xml(evaluator_response, "evaluation")
@@ -160,17 +167,20 @@ async def _aevaluator(prompt_details: dict, content: str,
     Returns:
         tuple[str, str]: The evaluation and feedback.
     """
-    processed_details = apply_functions(prompt_details=prompt_details)
-    full_prompt = (f"{processed_details.prompt}. "
+    processed_prompt = await aapply_functions(
+        prompt=prompt_details["prompt"],
+        functions=prompt_details["functions"]
+    )
+    full_prompt = (f"{processed_prompt}. "
                    f"Feedback is required so you must explain how "
                    f"the solution meets or does not meet the requirements\n"
                    f"Original task: {task}\n"
                    f"Content to evaluate: {content}")
     evaluator_response = await amodel_call(
         prompt=full_prompt,
-        provider=processed_details.provider,
-        model=processed_details.model,
-        system_prompt=processed_details.system_prompt
+        provider=prompt_details["provider"],
+        model=prompt_details["model"],
+        system_prompt=prompt_details["system_prompt"]
     )
     evaluation = extract_xml(evaluator_response, "evaluation")
     feedback = extract_xml(evaluator_response, "feedback")

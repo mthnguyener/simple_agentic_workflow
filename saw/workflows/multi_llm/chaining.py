@@ -4,7 +4,7 @@
 
 """
 from saw.core.model_interface import model_call, amodel_call
-from saw.workflows.utils import apply_functions
+from saw.workflows.utils import apply_functions, aapply_functions
 
 
 def chain(
@@ -24,15 +24,18 @@ def chain(
     """
     result = query
     for i, prompt_details in enumerate(prompts, 1):
-        processed_details = apply_functions(prompt_details=prompt_details)
-        print(f"Model: {processed_details.provider}-{processed_details.model}")
+        processed_prompt = apply_functions(
+            prompt=prompt_details["prompt"],
+            functions=prompt_details["functions"]
+        )
+        print(f'Model: {prompt_details["provider"]}-{prompt_details["model"]}')
 
-        print(f"\nStep {i}: {processed_details.prompt}")
+        print(f"\nStep {i}: {processed_prompt}")
         result = model_call(
-            prompt=f"{processed_details.prompt}\nInput: {result}",
-            provider=processed_details.provider,
-            model=processed_details.model,
-            system_prompt=processed_details.system_prompt,
+            prompt=f"{processed_prompt}\nInput: {result}",
+            provider=prompt_details["provider"],
+            model=prompt_details["model"],
+            system_prompt=prompt_details["system_prompt"],
             **params
         )
         print(f"\nResult: {result}")
@@ -55,15 +58,18 @@ async def achain(
     """
     result = query
     for i, prompt_details in enumerate(prompts, 1):
-        processed_details = apply_functions(prompt_details=prompt_details)
-        print(f"Model: {processed_details.provider}-{processed_details.model}")
+        processed_prompt = await aapply_functions(
+            prompt=prompt_details["prompt"],
+            functions=prompt_details["functions"]
+        )
+        print(f'Model: {prompt_details["provider"]}-{prompt_details["model"]}')
 
-        print(f"\nStep {i}: {processed_details.prompt}")
+        print(f"\nStep {i}: {processed_prompt}")
         result = await amodel_call(
-            prompt=f"{processed_details.prompt}\nInput: {result}",
-            provider=processed_details.provider,
-            model=processed_details.model,
-            system_prompt=processed_details.system_prompt,
+            prompt=f"{processed_prompt}\nInput: {result}",
+            provider=prompt_details["provider"],
+            model=prompt_details["model"],
+            system_prompt=prompt_details["system_prompt"],
             **params
         )
         print(f"\nResult: {result}")

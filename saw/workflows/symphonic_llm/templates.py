@@ -5,7 +5,7 @@
 """
 
 COMPOSER_PROMPT = """
-{composer_prompt}
+{prompt}
 
 Task: {task}
 
@@ -24,7 +24,7 @@ achieve, and how it differs from the original approach.
 """
 
 WORKER_PROMPT = """
-{worker_prompt}
+{prompt}
 
 Return your response in this format:
 

@@ -8,7 +8,7 @@ from concurrent.futures import ThreadPoolExecutor
 from typing import Any
 
 from saw.core.model_interface import model_call, amodel_call
-from saw.workflows.utils import apply_functions
+from saw.workflows.utils import apply_functions, aapply_functions
 
 
 def parallel(query: str,
@@ -30,15 +30,17 @@ def parallel(query: str,
         futures = [
             executor.submit(
                 model_call,
-                f"{apply_functions(prompt_details=x).prompt}\nInput: {query}",
-                apply_functions(prompt_details=x).provider,
-                apply_functions(prompt_details=x).model,
-                apply_functions(prompt_details=x).system_prompt,
+                f"{apply_functions(prompt=x["prompt"],
+                                   functions=x["functions"])}\nInput: {query}",
+                x["provider"],
+                x["model"],
+                x["system_prompt"],
                 **params
             ) for x in prompts
         ]
         results = [
-            (apply_functions(prompt_details=prompts[i]).prompt, f.result())
+            (apply_functions(prompt=prompts[i]["prompt"],
+                             functions=prompts[i]["functions"]), f.result())
             for i, f in enumerate(futures)
         ]
 
@@ -65,17 +67,21 @@ async def aparallel(query: str,
     tasks = [
         asyncio.create_task(
             amodel_call(
-                f"{apply_functions(prompt_details=x).prompt}\nInput: {query}",
-                apply_functions(prompt_details=x).provider,
-                apply_functions(prompt_details=x).model,
-                apply_functions(prompt_details=x).system_prompt,
+                f"{await apply_functions(
+                    prompt=x["prompt"],
+                    functions=x["functions"]
+                )}\nInput: {query}",
+                x["provider"],
+                x["model"],
+                x["system_prompt"],
                 **params
             )
         ) for x in prompts
     ]
     results = await asyncio.gather(*tasks)
     results = [
-        (apply_functions(prompt_details=prompts[i]).prompt, result)
+        (await aapply_functions(prompt=prompts[i]["prompt"],
+                             functions=prompts[i]["functions"]), result)
         for i, result in enumerate(results)]
 
     for inp, result in results:

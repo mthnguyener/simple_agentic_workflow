@@ -5,25 +5,26 @@
 """
 from typing import Any, Callable, Dict, List, Optional, Union
 
+from saw.workflows.adaptive_llm.adaptive import adaptive, aadaptive
 from saw.workflows.multi_llm.chaining import chain, achain
 from saw.workflows.multi_llm.parallelization import parallel, aparallel
 from saw.workflows.multi_llm.routing import route, aroute
 from saw.workflows.symphonic_llm.symphonic import symphony, asymphony
-from saw.workflows.adaptive_llm.adaptive import adaptive, aadaptive
+from saw.workflows.utils import build_func_args
 
 
 class AgentWorkflow:
     def __init__(self, operation: str,
-                 custom_function: Optional[Callable] = None):
+                 custom_workflow: Optional[Callable] = None):
         """
         Initializes an AgentWorkflow.
 
         Attributes:
             operation (str): The operation to perform.
-            custom_function (Optional[Callable]): A custom function to execute.
+            custom_workflow (Optional[Callable]): A custom workflow to execute.
         """
         self.operation = operation
-        self.custom_function = custom_function
+        self.custom_workflow = custom_workflow
 
     def _execute_workflow(
             self,
@@ -52,8 +53,11 @@ class AgentWorkflow:
             Union[Dict, str, List[tuple[str, Any]], tuple[str, list[dict]]]:
                 The result of the operation.
         """
-        if self.operation == "custom" and self.custom_function:
-            return self.custom_function(prompts=prompts, **params)
+        if self.operation == "custom" and self.custom_workflow:
+            func_args = build_func_args(self.custom_workflow, prompts, query,
+                                        reasoning_prompt, route_prompt, routes,
+                                        params)
+            return self.custom_workflow(**func_args)
         elif self.operation == "chaining":
             return chain(query=query, prompts=prompts, **params)
         elif self.operation == "parallelization":
@@ -103,8 +107,11 @@ class AgentWorkflow:
             Union[Dict, str, List[tuple[str, Any]], tuple[str, list[dict]]]:
                 The result of the operation.
         """
-        if self.operation == "custom" and self.custom_function:
-            return await self.custom_function(prompts=prompts, **params)
+        if self.operation == "custom" and self.custom_workflow:
+            func_args = build_func_args(self.custom_workflow, prompts, query,
+                                        reasoning_prompt, route_prompt, routes,
+                                        params)
+            return await self.custom_workflow(**func_args)
         elif self.operation == "chaining":
             return await achain(query=query, prompts=prompts, **params)
         elif self.operation == "parallelization":

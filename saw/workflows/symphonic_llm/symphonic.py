@@ -7,9 +7,9 @@ from typing import Any, Dict, List, Optional, Tuple
 
 from saw.core.model_interface import model_call, amodel_call
 from saw.core.processor import extract_xml, parse_tasks
-from saw.workflows.utils import apply_functions
 from saw.workflows.symphonic_llm.templates import (COMPOSER_PROMPT,
                                                           WORKER_PROMPT)
+from saw.workflows.utils import apply_functions, aapply_functions
 
 
 def format_prompt(template: str, **kwargs) -> str:
@@ -69,21 +69,26 @@ def process_tasks(tasks: List[Dict[str, Any]],
     worker_results = []
 
     for task_info in tasks:
+        task_functions = []
+        for s in context['tasks']:
+            if task_info['type'] in s['type']:
+                task_functions = s['functions']
         context['original_task'] = context['task']
         context['task_type'] = task_info['type']
         context['task_description'] = task_info['description']
 
         task_info["prompt"] = format_prompt(WORKER_PROMPT, **context)
-        task_info["model"] = context['worker_model']
-        task_info["provider"] = context['worker_provider']
 
-        processed_details = apply_functions(prompt_details=task_info)
+        processed_prompt = apply_functions(
+            prompt=task_info["prompt"],
+            functions=task_functions
+        )
 
         worker_response = model_call(
-            prompt=processed_details.prompt,
-            provider=processed_details.provider,
-            model=processed_details.model,
-            system_prompt=processed_details.system_prompt
+            prompt=processed_prompt,
+            provider=context['provider'],
+            model=context['model'],
+            system_prompt=context['system_prompt']
         )
 
         worker_response_constructed = handle_worker_response(
@@ -109,21 +114,25 @@ async def aprocess_tasks(tasks: List[Dict[str, Any]],
     worker_results = []
 
     for task_info in tasks:
+        task_functions = []
+        for s in context['tasks']:
+            if task_info['type'] in s['type']:
+                task_functions = s['functions']
         context['original_task'] = context['task']
         context['task_type'] = task_info['type']
         context['task_description'] = task_info['description']
 
         task_info["prompt"] = format_prompt(WORKER_PROMPT, **context)
-        task_info["model"] = context['worker_model']
-        task_info["provider"] = context['worker_provider']
 
-        processed_details = apply_functions(prompt_details=task_info)
-
+        processed_prompt = await aapply_functions(
+            prompt=task_info["prompt"],
+            functions=task_functions
+        )
         worker_response = await amodel_call(
-            prompt=processed_details.prompt,
-            provider=processed_details.provider,
-            model=processed_details.model,
-            system_prompt=processed_details.system_prompt
+            prompt=processed_prompt,
+            provider=context['provider'],
+            model=context['model'],
+            system_prompt=context['system_prompt']
         )
 
         worker_response_constructed = handle_worker_response(
@@ -161,39 +170,42 @@ def prepare_context(
 
 
 def prepare_contexts(
-        task: str, subtasks: Dict[str, str],
-         composer_details: Dict[str, Any],
-         worker_details: Dict[str, Any]
+        main_task: str, subtasks: Dict[str, str],
+        composer_details: Dict[str, Any],
+        worker_details: Dict[str, Any]
 ) -> Tuple[Dict[str, Any], Dict[str, Any]]:
     """
     Prepare the context dictionaries for the composer and worker.
 
     Args:
-        task (str): The task to process.
+        main_task (str): The task to process.
         subtasks (Dict[str, str]): A dictionary of subtasks.
         composer_details (Dict[str, Any]): Details for the composer task.
         worker_details (Dict[str, Any]): Details for the worker tasks.
 
     Returns:
-        Tuple[Dict[str, Any], Dict[str, Any]]: The composer and worker context dictionaries.
+        Tuple[Dict[str, Any], Dict[str, Any]]: The composer and worker
+            context dictionaries.
     """
     common_context = prepare_context(
-        task=task,
+        task=main_task,
         subtasks=subtasks
     )
 
     composer_context = {**common_context, **{
-        "composer_prompt": composer_details["prompt"],
-        "composer_provider": composer_details["provider"],
-        "composer_model": composer_details["model"],
-        "composer_system_prompt": composer_details["system_prompt"],
+        "prompt": composer_details["prompt"],
+        "tasks": composer_details["tasks"],
+        "provider": composer_details["provider"],
+        "model": composer_details["model"],
+        "system_prompt": composer_details["system_prompt"],
     }}
 
     worker_context = {**common_context, **{
-        "worker_prompt": worker_details["prompt"],
-        "worker_provider": worker_details["provider"],
-        "worker_model": worker_details["model"],
-        "worker_system_prompt": worker_details["system_prompt"]
+        "prompt": worker_details["prompt"],
+        "tasks": worker_details["tasks"],
+        "provider": worker_details["provider"],
+        "model": worker_details["model"],
+        "system_prompt": worker_details["system_prompt"]
     }}
 
     return composer_context, worker_context
@@ -210,11 +222,15 @@ def get_composer_response(context: Dict[str, Any]) -> str:
         str: The composer response.
     """
     composer_input = format_prompt(COMPOSER_PROMPT, **context)
-    composer_response = model_call(
+    processed_prompt = apply_functions(
         prompt=composer_input,
-        provider=context['composer_provider'],
-        model=context['composer_model'],
-        system_prompt=context['composer_system_prompt']
+        functions=context['tasks']['functions']
+    )
+    composer_response = model_call(
+        prompt=processed_prompt,
+        provider=context['provider'],
+        model=context['model'],
+        system_prompt=context['system_prompt']
     )
     return composer_response
 
@@ -230,11 +246,15 @@ async def aget_composer_response(context: Dict[str, Any]) -> str:
         str: The composer response.
     """
     composer_input = format_prompt(COMPOSER_PROMPT, **context)
-    composer_response = await amodel_call(
+    processed_prompt = await apply_functions(
         prompt=composer_input,
-        provider=context['composer_provider'],
-        model=context['composer_model'],
-        system_prompt=context['composer_system_prompt']
+        functions=context['tasks']['functions']
+    )
+    composer_response = await amodel_call(
+        prompt=processed_prompt,
+        provider=context['provider'],
+        model=context['model'],
+        system_prompt=context['system_prompt']
     )
     return composer_response
 
@@ -252,9 +272,9 @@ def symphony(composer_details: Dict[str, Any],
         Dict[str, Any]: A dictionary of results.
     """
     subtasks = {subtask["type"]: subtask["description"]
-                for subtask in worker_details["subtasks"]}
+                for subtask in worker_details["tasks"]}
     composer_context, worker_context = prepare_contexts(
-        task=composer_details["main_task"]["task"],
+        main_task=composer_details["tasks"]["task"],
         subtasks=subtasks,
         composer_details=composer_details,
         worker_details=worker_details
@@ -282,9 +302,9 @@ async def asymphony(composer_details: Dict[str, Any],
         Dict[str, Any]: A dictionary of results.
     """
     subtasks = {subtask["type"]: subtask["description"]
-                for subtask in worker_details["subtasks"]}
+                for subtask in worker_details["tasks"]}
     composer_context, worker_context = prepare_contexts(
-        task=composer_details["main_task"]["task"],
+        main_task=composer_details["tasks"]["task"],
         subtasks=subtasks,
         composer_details=composer_details,
         worker_details=worker_details
