@@ -16,26 +16,26 @@ different tasks. It includes examples of chaining, parallelization, and
 routing using synchronous and asynchronous methods.
 
 ### [`adaptive_llm.ipynb`](./adaptive_llm.ipynb)
-This notebook demonstrates the adaptive workflow using the AgentWorkflow class.
+This notebook demonstrates the adaptive workflow focusing on feedback and evaluation.
 It includes examples of evaluating and generating solutions iteratively, with
 a focus on code correctness, efficiency, and adherence to design patterns.
 Both synchronous and asynchronous methods are covered.
 
 ### [`symphonic_llm.ipynb`](./symphonic_llm.ipynb)
-This notebook illustrates the symphonic processing workflow using the
-`Symphony` class. It includes examples of both synchronous and asynchronous
+This notebook illustrates the symphonic processing workflow with a composer 
+guiding workers. It includes examples of both synchronous and asynchronous
 processing for tasks that require breaking down into subtasks and generating
 content.
 
 ### [`custom_researcher.ipynb`](./custom_researcher.ipynb)
-This notebook demonstrates the usage of custom research workflows using the
-`Researcher` class. It includes examples of how to set up and execute custom
-research tasks.
+This notebook demonstrates the usage of custom research workflow for researching 
+complex topics by scraping web content and providing detailed reports. It 
+includes examples of how to set up and execute custom research tasks.
 
 ### [`custom_reviewer.ipynb`](./custom_reviewer.ipynb)
-This notebook showcases the use of custom review workflows using the
-`Reviewer` class. It includes examples of how to set up and perform custom
-reviews on various tasks.
+This notebook showcases the use of custom review workflow for reviewing a 
+product using multiple personas and compiling a holistic product review. It 
+includes examples of how to set up and perform custom reviews on various tasks.
 
 ## Environment Setup
 
