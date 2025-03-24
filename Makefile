@@ -45,6 +45,7 @@ cpp-build:
 deploy: docker-up
 	@$(DOCKER_CMD) container exec $(CONTAINER_PREFIX)_python \
 		/bin/bash -c "pip install build && python3 -m build --wheel && pip uninstall -y build"
+	@echo "Tagging version $(VERSION)"
 	@git tag -a v$(VERSION) -m "Version $(VERSION)"
 	@echo "Wheel file created in the dist/ directory"
 	@echo "Enter the following to push this tag to the repository:"

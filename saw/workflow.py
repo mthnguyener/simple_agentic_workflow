@@ -154,7 +154,7 @@ class AgentWorkflow:
         Args:
             async_mode (bool): Whether to execute the workflow asynchronously.
             query (dict | str): The input query.
-            prompts (Optional[Union[dict, List[Dict[str, Any]]]]):
+            prompts (Optional[Union[dict, List[Dict[str, Any]]]]): \
                 Prompts for chaining.
             reasoning_prompt (str): The template for the reasoning prompt.
             route_prompt (str): The template for the route prompt.

@@ -13,8 +13,8 @@ class Error(Exception):
     :Attributes:
     - **expression**: *str* input expression in which the error occurred
     - **message**: *str* explanation of the error
-    """
 
+    """
     def __init__(
         self,
         expression: Optional[str] = None,

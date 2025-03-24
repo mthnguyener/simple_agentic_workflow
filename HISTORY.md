@@ -6,7 +6,7 @@
 **New Features**
 
 - Introduced `Multi-LLM`, `Adaptive LLM`, and `Symphonic LLM` workflow for 
-handling complex tasks and subtasks.
+handling tasks and subtasks.
 - Added notebook examples for all workflows.
-- Added `AgentWorkflow` to support all workflow execution.
+- Added `AgentWorkflow` to support all core workflows and custom workflow.
 - Add core functionality like model_interface and provider modules

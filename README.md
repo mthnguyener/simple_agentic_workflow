@@ -1,5 +1,5 @@
 # Simple Agentic Workflow
-A Python SDK for fast, simple agentic workflows.
+A Python SDK for simple agentic workflows.
 
 ## Getting Started With the New Project
 Simple Agentic Workflow is a fully functioning Python package that may be installed using 
@@ -17,10 +17,10 @@ pip install git+https://github.com/mthnguyener/simple_agentic_workflow.git
 Or, simply clone the repository and install the package locally.
 
 ```bash
-git clone <enter_path_to_repo>.git
+git clone https://github.com/mthnguyener/simple_agentic_workflow.git
 ```
 
-Then, use the following command:
+Then, run the following command:
 ```bash
 pip install .
 ````
@@ -28,6 +28,8 @@ pip install .
 ## Usage
 After installing the package, you can use it to create and manage agent workflows. 
 Below are some examples of how to use the package.
+
+Simple Agentic Workflow source codes are located in the `saw/` directory.
 
 ### Implementation Examples
 1. [Multi-LLM Workflow](workflows/multi_llm/README.md)

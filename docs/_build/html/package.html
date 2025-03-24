@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Package Documentation &#8212; Simple Agent Workflow  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=d1102ebc" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Simple Agentic Workflow’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="package-documentation">
+<h1>Package Documentation<a class="headerlink" href="#package-documentation" title="Link to this heading">¶</a></h1>
+<section id="module-saw.workflow">
+<span id="main-modules"></span><h2>Main Modules<a class="headerlink" href="#module-saw.workflow" title="Link to this heading">¶</a></h2>
+<p>Agent Workflow Module</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="saw.workflow.AgentWorkflow">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflow.</span></span><span class="sig-name descname"><span class="pre">AgentWorkflow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">operation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">custom_workflow</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.workflow.AgentWorkflow" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="saw.workflow.AgentWorkflow.execute">
+<span class="sig-name descname"><span class="pre">execute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoning_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">route_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">async_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">list</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Any</span></span></span><a class="headerlink" href="#saw.workflow.AgentWorkflow.execute" title="Link to this definition">¶</a></dt>
+<dd><p>Execute the specified workflow.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>async_mode (bool): Whether to execute the workflow asynchronously.
+query (dict | str): The input query.
+prompts (Optional[Union[dict, List[Dict[str, Any]]]]):                 Prompts for chaining.
+reasoning_prompt (str): The template for the reasoning prompt.
+route_prompt (str): The template for the route prompt.
+routes (Optional[Dict[str, Dict[str, Any]]]): Routes for routing.
+n_workers (int): The number of workers to use for parallelization.
+params (Dict[str, Any]): Additional parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Union[str, List[tuple[str, Any]], Any]: The result of the operation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="module-saw.core.backend">
+<span id="core-modules"></span><h2>Core Modules<a class="headerlink" href="#module-saw.core.backend" title="Link to this heading">¶</a></h2>
+<p>LLM Backend Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.backend.aregister_backend">
+<span class="sig-prename descclassname"><span class="pre">saw.core.backend.</span></span><span class="sig-name descname"><span class="pre">aregister_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.core.backend.aregister_backend" title="Link to this definition">¶</a></dt>
+<dd><p>Registers an asynchronous provider backend with the interface.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): The name of the backend.
+func (Async_Provider_Call_Function):             The asynchronous provider call function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.backend.register_backend">
+<span class="sig-prename descclassname"><span class="pre">saw.core.backend.</span></span><span class="sig-name descname"><span class="pre">register_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.core.backend.register_backend" title="Link to this definition">¶</a></dt>
+<dd><p>Registers a provider backend with the interface.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>name (str): The name of the backend.
+func (Provider_Call_Function): The provider call function.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.backend.select_backend">
+<span class="sig-prename descclassname"><span class="pre">saw.core.backend.</span></span><span class="sig-name descname"><span class="pre">select_backend</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">async_mode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.core.backend.select_backend" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p id="module-saw.core.model_interface">LLM Interface Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.model_interface.amodel_call">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.core.model_interface.</span></span><span class="sig-name descname"><span class="pre">amodel_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#saw.core.model_interface.amodel_call" title="Link to this definition">¶</a></dt>
+<dd><p>Calls the specified asynchronous LLM backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prompt (str): The input prompt.
+provider (str): The provider to use.
+model (str): The model to use.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The response from the LLM backend.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.model_interface.model_call">
+<span class="sig-prename descclassname"><span class="pre">saw.core.model_interface.</span></span><span class="sig-name descname"><span class="pre">model_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">provider</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.core.model_interface.model_call" title="Link to this definition">¶</a></dt>
+<dd><p>Calls the specified LLM backend.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prompt (str): The input prompt.
+provider (str): The provider to use.
+model (str): The model to use.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The response from the LLM backend.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.core.processor">Output Processor Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.processor.extract_xml">
+<span class="sig-prename descclassname"><span class="pre">saw.core.processor.</span></span><span class="sig-name descname"><span class="pre">extract_xml</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tag</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.core.processor.extract_xml" title="Link to this definition">¶</a></dt>
+<dd><p>Extracts the content of the specified XML tag from the given text.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>text (str): The text containing the XML.
+tag (str): The XML tag to extract content from.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The content of the specified XML tag</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.core.processor.parse_tasks">
+<span class="sig-prename descclassname"><span class="pre">saw.core.processor.</span></span><span class="sig-name descname"><span class="pre">parse_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks_xml</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.core.processor.parse_tasks" title="Link to this definition">¶</a></dt>
+<dd><p>Parse XML tasks into a list of task dictionaries.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tasks_xml (str): The XML tasks to parse.</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[Dict]: A list of task dictionaries.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-saw.providers.google">
+<span id="provider-modules"></span><h2>Provider Modules<a class="headerlink" href="#module-saw.providers.google" title="Link to this heading">¶</a></h2>
+<p>Google Call Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.google.agemini_call">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.google.</span></span><span class="sig-name descname"><span class="pre">agemini_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.google.agemini_call" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronous Google LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Google model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Google parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.google.async_generate_content">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.google.</span></span><span class="sig-name descname"><span class="pre">async_generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenerateContentResponse</span></span></span><a class="headerlink" href="#saw.providers.google.async_generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously generates content using the Google genai client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (genai.Client): The Google genai client.
+model (str): The Google model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Google parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>types.GenerateContentResponse: The generated content response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.google.create_client">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.google.</span></span><span class="sig-name descname"><span class="pre">create_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Client</span></span></span><a class="headerlink" href="#saw.providers.google.create_client" title="Link to this definition">¶</a></dt>
+<dd><p>Creates and returns a Google genai client.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>genai.Client: The Google genai client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.google.gemini_call">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.google.</span></span><span class="sig-name descname"><span class="pre">gemini_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.google.gemini_call" title="Link to this definition">¶</a></dt>
+<dd><p>Google LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Google model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Google parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.google.generate_content">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.google.</span></span><span class="sig-name descname"><span class="pre">generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Client</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenerateContentResponse</span></span></span><a class="headerlink" href="#saw.providers.google.generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Generates content using the Google genai client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (genai.Client): The Google genai client.
+model (str): The Google model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Google parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>types.GenerateContentResponse: The generated content response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.providers.groq">Groq Call Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.groq.agroq_call">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.groq.</span></span><span class="sig-name descname"><span class="pre">agroq_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.groq.agroq_call" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronous Groq LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Groq model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Groq parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.groq.async_generate_content">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.groq.</span></span><span class="sig-name descname"><span class="pre">async_generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">AsyncGroq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChatCompletion</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">AsyncStream</span><span class="p"><span class="pre">[</span></span><span class="pre">ChatCompletionChunk</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.providers.groq.async_generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously generates content using the Groq client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (AsyncGroq): The Groq client.
+model (str): The Groq model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Groq parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>ChatCompletion | AsyncStream[ChatCompletionChunk]:</dt><dd><p>The generated content response.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.groq.create_client">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.groq.</span></span><span class="sig-name descname"><span class="pre">create_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Groq</span></span></span><a class="headerlink" href="#saw.providers.groq.create_client" title="Link to this definition">¶</a></dt>
+<dd><p>Creates and returns a Groq client.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>Groq: The Groq client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.groq.generate_content">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.groq.</span></span><span class="sig-name descname"><span class="pre">generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Groq</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChatCompletion</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">ChatCompletionChunk</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.providers.groq.generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Generates content using the Groq client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (Groq): The Groq client.
+model (str): The Groq model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Groq parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>ChatCompletion | Stream[ChatCompletionChunk]:</dt><dd><p>The generated content response.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.groq.groq_call">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.groq.</span></span><span class="sig-name descname"><span class="pre">groq_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.groq.groq_call" title="Link to this definition">¶</a></dt>
+<dd><p>Groq LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Groq model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Groq parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.providers.ollama">Ollama Call Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.ollama.aollama_call">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.ollama.</span></span><span class="sig-name descname"><span class="pre">aollama_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.ollama.aollama_call" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronous Ollama LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Ollama model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Ollama parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.ollama.async_generate_response">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.ollama.</span></span><span class="sig-name descname"><span class="pre">async_generate_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenerateResponse</span></span></span><a class="headerlink" href="#saw.providers.ollama.async_generate_response" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously generates a response from the Ollama model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Ollama model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Ollama parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ollama.GenerateResponse: The generated response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.ollama.generate_response">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.ollama.</span></span><span class="sig-name descname"><span class="pre">generate_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">GenerateResponse</span></span></span><a class="headerlink" href="#saw.providers.ollama.generate_response" title="Link to this definition">¶</a></dt>
+<dd><p>Generates a response from the Ollama model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Ollama model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Ollama parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>ollama.GenerateResponse: The generated response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.ollama.ollama_call">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.ollama.</span></span><span class="sig-name descname"><span class="pre">ollama_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.ollama.ollama_call" title="Link to this definition">¶</a></dt>
+<dd><p>Ollama LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Ollama model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other Ollama parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.ollama.ollama_pull">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.ollama.</span></span><span class="sig-name descname"><span class="pre">ollama_pull</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.providers.ollama.ollama_pull" title="Link to this definition">¶</a></dt>
+<dd><p>Pulls the specified Ollama model.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The Ollama model name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.providers.openai">OpenAI Call Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.openai.aopenai_call">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.openai.</span></span><span class="sig-name descname"><span class="pre">aopenai_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.openai.aopenai_call" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronous OpenAI LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The OpenAI model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other OpenAI parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.openai.async_generate_content">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.providers.openai.</span></span><span class="sig-name descname"><span class="pre">async_generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpenAI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChatCompletion</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">AsyncStream</span><span class="p"><span class="pre">[</span></span><span class="pre">ChatCompletionChunk</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.providers.openai.async_generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously generates content using the OpenAI client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (openai.Client): The OpenAI client.
+model (str): The OpenAI model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other OpenAI parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>openai.Completion: The generated content response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.openai.create_client">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.openai.</span></span><span class="sig-name descname"><span class="pre">create_client</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">OpenAI</span></span></span><a class="headerlink" href="#saw.providers.openai.create_client" title="Link to this definition">¶</a></dt>
+<dd><p>Creates and returns an OpenAI client.</p>
+<dl class="simple">
+<dt>Returns:</dt><dd><p>openai.Client: The OpenAI client.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.openai.generate_content">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.openai.</span></span><span class="sig-name descname"><span class="pre">generate_content</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">client</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">OpenAI</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ChatCompletion</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Stream</span><span class="p"><span class="pre">[</span></span><span class="pre">ChatCompletionChunk</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.providers.openai.generate_content" title="Link to this definition">¶</a></dt>
+<dd><p>Generates content using the OpenAI client.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>client (openai.Client): The OpenAI client.
+model (str): The OpenAI model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other OpenAI parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>openai.Completion: The generated content response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.providers.openai.openai_call">
+<span class="sig-prename descclassname"><span class="pre">saw.providers.openai.</span></span><span class="sig-name descname"><span class="pre">openai_call</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">model</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">system_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.providers.openai.openai_call" title="Link to this definition">¶</a></dt>
+<dd><p>OpenAI LLM call function, now with params support.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>model (str): The OpenAI model name.
+prompt (str): The user’s prompt.
+system_prompt (str): The system prompt.
+params (dict): A dictionary of other OpenAI parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The generated text, or None on error.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-saw.tests.utils">
+<span id="test-modules"></span><h2>Test Modules<a class="headerlink" href="#module-saw.tests.utils" title="Link to this heading">¶</a></h2>
+</section>
+<section id="module-saw.utils.exceptions">
+<span id="util-modules"></span><h2>Util Modules<a class="headerlink" href="#module-saw.utils.exceptions" title="Link to this heading">¶</a></h2>
+<p>Exception Module</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="saw.utils.exceptions.Error">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.utils.exceptions.</span></span><span class="sig-name descname"><span class="pre">Error</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.utils.exceptions.Error" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></p>
+<p>Base class for package exceptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><p></p></dd>
+</dl>
+<ul class="simple">
+<li><p><strong>expression</strong>: <em>str</em> input expression in which the error occurred</p></li>
+<li><p><strong>message</strong>: <em>str</em> explanation of the error</p></li>
+</ul>
+</dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="saw.utils.exceptions.InputError">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.utils.exceptions.</span></span><span class="sig-name descname"><span class="pre">InputError</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expression</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">message</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.utils.exceptions.InputError" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#saw.utils.exceptions.Error" title="saw.utils.exceptions.Error"><code class="xref py py-class docutils literal notranslate"><span class="pre">Error</span></code></a></p>
+<p>Exception raised for errors in the input.</p>
+</dd></dl>
+
+<p id="module-saw.utils.pkg_globals">Global Variable Module</p>
+<p id="module-saw.utils.utils">Package Utilities Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.utils.utils.docker_secret">
+<span class="sig-prename descclassname"><span class="pre">saw.utils.utils.</span></span><span class="sig-name descname"><span class="pre">docker_secret</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">secret_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#saw.utils.utils.docker_secret" title="Link to this definition">¶</a></dt>
+<dd><p>Read Docker secret file.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>secret_name: name of secret</p>
+</dd>
+<dt>Returns:</dt><dd><p>secret value or None if not found</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.utils.utils.logger_setup">
+<span class="sig-prename descclassname"><span class="pre">saw.utils.utils.</span></span><span class="sig-name descname"><span class="pre">logger_setup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">file_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Path</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger_name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'package'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Logger</span></span></span><a class="headerlink" href="#saw.utils.utils.logger_setup" title="Link to this definition">¶</a></dt>
+<dd><p>Configure logger with console and file handlers.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>file_path: path to log file
+logger_name: name of logger</p>
+</dd>
+<dt>Returns:</dt><dd><p>logging.Logger: configured logger</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.utils.utils.nested_get">
+<span class="sig-prename descclassname"><span class="pre">saw.utils.utils.</span></span><span class="sig-name descname"><span class="pre">nested_get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#saw.utils.utils.nested_get" title="Link to this definition">¶</a></dt>
+<dd><p>Retrieve value from a nested dictionary.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>nested_dict: nested dictionary
+key_path: list of key levels with the final entry being the target</p>
+</dd>
+<dt>Returns:</dt><dd><p>Any: target value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.utils.utils.nested_set">
+<span class="sig-prename descclassname"><span class="pre">saw.utils.utils.</span></span><span class="sig-name descname"><span class="pre">nested_set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">nested_dict</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key_path</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.utils.utils.nested_set" title="Link to this definition">¶</a></dt>
+<dd><p>Set object of nested dictionary.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>nested_dict: nested dictionary
+key_path: list of key levels with the final entry being the target
+value: target value</p>
+</dd>
+<dt>Returns:</dt><dd><p>Any: target value</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.utils.utils.timestamp_dir">
+<span class="sig-prename descclassname"><span class="pre">saw.utils.utils.</span></span><span class="sig-name descname"><span class="pre">timestamp_dir</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">base_dir</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">desc</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#saw.utils.utils.timestamp_dir" title="Link to this definition">¶</a></dt>
+<dd><p>Generate path to new directory with a timestamp.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>base_dir: base directory
+desc: description of directory</p>
+</dd>
+<dt>Returns:</dt><dd><p>Path: path to new directory</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-saw.workflows.adaptive_llm.adaptive">
+<span id="workflow-modules"></span><h2>Workflow Modules<a class="headerlink" href="#module-saw.workflows.adaptive_llm.adaptive" title="Link to this heading">¶</a></h2>
+<p>Adaptive LLM Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.adaptive_llm.adaptive.aadaptive">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.adaptive_llm.adaptive.</span></span><span class="sig-name descname"><span class="pre">aadaptive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator_prompt_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator_prompt_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.adaptive_llm.adaptive.aadaptive" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously keep generating and evaluating until requirements are met.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>evaluator_prompt_details (dict): The prompt details for evaluation.
+generator_prompt_details (dict): The prompt details for generation.
+ratings (list[str]): The possible ratings for evaluation.
+task (str): The task to evaluate a solution for.
+max_iterations (int): The maximum number of iterations.</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple[str, list[dict]]: The generated solution and chain of thought.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.adaptive_llm.adaptive.adaptive">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.adaptive_llm.adaptive.</span></span><span class="sig-name descname"><span class="pre">adaptive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">evaluator_prompt_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">generator_prompt_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ratings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_iterations</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.adaptive_llm.adaptive.adaptive" title="Link to this definition">¶</a></dt>
+<dd><p>Keep generating and evaluating until requirements are met.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>evaluator_prompt_details (dict): The prompt details for evaluation.
+generator_prompt_details (dict): The prompt details for generation.
+ratings (list[str]): The possible ratings for evaluation.
+task (str): The task to evaluate a solution for.
+max_iterations (int): The maximum number of iterations.</p>
+</dd>
+<dt>Returns:</dt><dd><p>tuple[str, list[dict]]: The generated solution and chain of thought.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.workflows.multi_llm.chaining">LLM Chaining Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.chaining.achain">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.chaining.</span></span><span class="sig-name descname"><span class="pre">achain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.chaining.achain" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronous chain multiple prompts together to process a query.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>query (str): The input query.
+prompts (list[dict]): A list of dictionaries containing prompt details.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The processed query.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.chaining.chain">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.chaining.</span></span><span class="sig-name descname"><span class="pre">chain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.chaining.chain" title="Link to this definition">¶</a></dt>
+<dd><p>Chains multiple prompts together to process a query.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>query (str): The input query.
+prompts (list[dict]): A list of dictionaries containing prompt details.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The processed query.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.workflows.multi_llm.parallelization">LLM Parallelization Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.parallelization.aparallel">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.parallelization.</span></span><span class="sig-name descname"><span class="pre">aparallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.parallelization.aparallel" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously parallelizes the processing of multiple inputs.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>query (str): The input query.
+prompts (list[dict]): A list of dictionaries containing prompt details.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list[tuple[str, Any]]: A list of processed outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.parallelization.parallel">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.parallelization.</span></span><span class="sig-name descname"><span class="pre">parallel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">query</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">prompts</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_workers</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.parallelization.parallel" title="Link to this definition">¶</a></dt>
+<dd><p>Parallelizes the processing of multiple inputs.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>query (str): The input query.
+prompts (list[dict]): A list of dictionaries containing prompt details.
+n_workers (int): The number of workers to use.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>list[tuple[str, Any]]: A list of processed outputs.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.workflows.multi_llm.routing">LLM Routing Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.routing.aroute">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.routing.</span></span><span class="sig-name descname"><span class="pre">aroute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoning_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">route_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.routing.aroute" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously routes a prompt to the most appropriate model call.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prompt (dict): The input prompt details.
+reasoning_prompt (str): The template for the reasoning prompt.
+route_prompt (str): The template for the route prompt.
+routes (dict[str, dict]):             A dictionary mapping route keys to prompt details.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The response from the selected support team.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.multi_llm.routing.route">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.multi_llm.routing.</span></span><span class="sig-name descname"><span class="pre">route</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reasoning_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">route_prompt</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">routes</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">dict</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">params</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.multi_llm.routing.route" title="Link to this definition">¶</a></dt>
+<dd><p>Routes a prompt to the most appropriate model call based on the content.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>prompt (dict): The input prompt details.
+reasoning_prompt (str): The template for the reasoning prompt.
+route_prompt (str): The template for the route prompt.
+routes (dict[str, dict]):             A dictionary mapping route keys to prompt details.
+params (dict): A dictionary of other parameters.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The response from the selected support team.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p id="module-saw.workflows.symphonic_llm.symphonic">Symphonic LLM Module</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.aget_composer_response">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">aget_composer_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.aget_composer_response" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously get the composer response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>context (Dict[str, Any]): A dictionary of context variables.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The composer response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.aprocess_tasks">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">aprocess_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.aprocess_tasks" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously process each task using the worker LLM.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tasks (List[Dict[str, Any]]): List of task dictionaries.
+context (Dict[str, Any]): Context dictionary.</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[Dict[str, Any]]: List of worker results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.asymphony">
+<em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">asymphony</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composer_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.asymphony" title="Link to this definition">¶</a></dt>
+<dd><p>Asynchronously process task by breaking it down and running subtasks.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>composer_details (Dict[str, Any]): Details for the composer task.
+worker_details (Dict[str, Any]): Details for the worker tasks.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Dict[str, Any]: A dictionary of results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.format_prompt">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">format_prompt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">template</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.format_prompt" title="Link to this definition">¶</a></dt>
+<dd><p>Format a prompt template with variables.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>template (str): The prompt template.
+kwargs (dict): A dictionary of variables to replace.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The formatted prompt.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.get_composer_response">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">get_composer_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.get_composer_response" title="Link to this definition">¶</a></dt>
+<dd><p>Get the composer response.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>context (Dict[str, Any]): A dictionary of context variables.</p>
+</dd>
+<dt>Returns:</dt><dd><p>str: The composer response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.handle_worker_response">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">handle_worker_response</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">worker_response</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">task_info</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.handle_worker_response" title="Link to this definition">¶</a></dt>
+<dd><p>Handle the worker response and extract the result.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>worker_response (str): The response from the worker.
+task_info (Dict[str, Any]): The task information.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Dict[str, Any]: The processed worker response.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.prepare_context">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">prepare_context</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.prepare_context" title="Link to this definition">¶</a></dt>
+<dd><p>Prepare the context dictionary.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>task (str): The task to process.
+subtasks (Dict[str, str]): A dictionary of subtasks.
+context (Optional[Dict[str, Any]]): A dictionary of context variables.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Dict[str, Any]: A dictionary of context variables.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.prepare_contexts">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">prepare_contexts</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_task</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">subtasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">composer_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.prepare_contexts" title="Link to this definition">¶</a></dt>
+<dd><p>Prepare the context dictionaries for the composer and worker.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>main_task (str): The task to process.
+subtasks (Dict[str, str]): A dictionary of subtasks.
+composer_details (Dict[str, Any]): Details for the composer task.
+worker_details (Dict[str, Any]): Details for the worker tasks.</p>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>Tuple[Dict[str, Any], Dict[str, Any]]: The composer and worker</dt><dd><p>context dictionaries.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.process_tasks">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">process_tasks</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tasks</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.process_tasks" title="Link to this definition">¶</a></dt>
+<dd><p>Process each task using the worker LLM.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>tasks (List[Dict[str, Any]]): List of task dictionaries.
+context (Dict[str, Any]): Context dictionary.</p>
+</dd>
+<dt>Returns:</dt><dd><p>List[Dict[str, Any]]: List of worker results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="saw.workflows.symphonic_llm.symphonic.symphony">
+<span class="sig-prename descclassname"><span class="pre">saw.workflows.symphonic_llm.symphonic.</span></span><span class="sig-name descname"><span class="pre">symphony</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">composer_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">worker_details</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#saw.workflows.symphonic_llm.symphonic.symphony" title="Link to this definition">¶</a></dt>
+<dd><p>Process task by breaking it down and running subtasks.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>composer_details (Dict[str, Any]): Details for the composer task.
+worker_details (Dict[str, Any]): Details for the worker tasks.</p>
+</dd>
+<dt>Returns:</dt><dd><p>Dict[str, Any]: A dictionary of results.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">Simple Agent Workflow</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Navigation</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Package Documentation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.workflow">Main Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.core.backend">Core Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.providers.google">Provider Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.tests.utils">Test Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.utils.exceptions">Util Modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-saw.workflows.adaptive_llm.adaptive">Workflow Modules</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Simple Agentic Workflow’s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, Minh Nguyen.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/package.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

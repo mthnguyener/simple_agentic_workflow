@@ -11,7 +11,7 @@ from pathlib import Path
 import time
 from typing import Any, Dict, List, Optional, Union
 
-from saw.pkg_globals import FONT_SIZE, TIME_FORMAT
+from saw.utils.pkg_globals import TIME_FORMAT
 
 
 def docker_secret(secret_name: str) -> Optional[str]:

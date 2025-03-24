@@ -39,8 +39,8 @@ def aregister_backend(name: str, func: Async_Provider_Call_Function):
 
     Args:
         name (str): The name of the backend.
-        func (Async_Provider_Call_Function): The asynchronous provider
-            call function.
+        func (Async_Provider_Call_Function): \
+            The asynchronous provider call function.
     """
     async_provider_backends[name] = func
 

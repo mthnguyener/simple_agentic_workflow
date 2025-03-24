@@ -30,8 +30,9 @@ def parallel(query: str,
         futures = [
             executor.submit(
                 model_call,
-                f"{apply_functions(prompt=x["prompt"],
-                                   functions=x["functions"])}\nInput: {query}",
+                f"""{apply_functions(prompt=x['prompt'],
+                                     functions=x['functions'])
+                }\nInput: {query}""",
                 x["provider"],
                 x["model"],
                 x["system_prompt"],
@@ -67,10 +68,9 @@ async def aparallel(query: str,
     tasks = [
         asyncio.create_task(
             amodel_call(
-                f"{await apply_functions(
-                    prompt=x["prompt"],
-                    functions=x["functions"]
-                )}\nInput: {query}",
+                f"""{await apply_functions(prompt=x['prompt'],
+                                           functions=x['functions'])
+                }\nInput: {query}""",
                 x["provider"],
                 x["model"],
                 x["system_prompt"],

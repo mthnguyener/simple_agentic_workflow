@@ -3,7 +3,7 @@ networks:
     name: ${USER_NAME:-default}-saw-network
 
 services:
-  saw:
+  saw_nginx:
     container_name: ${USER_NAME:-default}_saw_nginx
     env_file: .env
     environment:
@@ -38,7 +38,7 @@ services:
     - PORT_GOOGLE=${PORT_GOOGLE}
     - PORT_JUPYTER=${PORT_JUPYTER}
     - PORT_PROFILE=${PORT_PROFILE}
-    image: saw_python
+    image: ${USER_NAME:-default}_saw_python
     ipc: host
     networks:
     - saw-network

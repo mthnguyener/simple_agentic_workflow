@@ -22,8 +22,8 @@ def route(
         prompt (dict): The input prompt details.
         reasoning_prompt (str): The template for the reasoning prompt.
         route_prompt (str): The template for the route prompt.
-        routes (dict[str, dict]): A dictionary mapping route keys to
-            dictionaries containing prompt details.
+        routes (dict[str, dict]): \
+            A dictionary mapping route keys to prompt details.
         params (dict): A dictionary of other parameters.
 
     Returns:
@@ -59,11 +59,11 @@ def route(
         prompt=selected_prompt_details["prompt"],
         functions=selected_prompt_details["functions"]
     )
-    print(f"Model: {selected_prompt_details["provider"]}-"
-          f"{selected_prompt_details["model"]}")
+    print(f"Model: {selected_prompt_details['provider']}-"
+          f"{selected_prompt_details['model']}")
 
     result = model_call(
-        prompt=f"{selected_processed}\nQuery: {prompt["prompt"]}",
+        prompt=f"{selected_processed}\nQuery: {prompt['prompt']}",
         provider=selected_prompt_details["provider"],
         model=selected_prompt_details["model"],
         system_prompt=selected_prompt_details["system_prompt"],
@@ -86,8 +86,8 @@ async def aroute(
         prompt (dict): The input prompt details.
         reasoning_prompt (str): The template for the reasoning prompt.
         route_prompt (str): The template for the route prompt.
-        routes (dict[str, dict]): A dictionary mapping route keys to
-            prompt details.
+        routes (dict[str, dict]): \
+            A dictionary mapping route keys to prompt details.
         params (dict): A dictionary of other parameters.
 
     Returns:
@@ -125,11 +125,11 @@ async def aroute(
         prompt=selected_prompt_details["prompt"],
         functions=selected_prompt_details["functions"]
     )
-    print(f"Model: {selected_prompt_details["provider"]}-"
-          f"{selected_prompt_details["model"]}")
+    print(f"Model: {selected_prompt_details['provider']}-"
+          f"{selected_prompt_details['model']}")
 
     result = await amodel_call(
-        prompt=f"{selected_processed}\nQuery: {prompt["prompt"]}",
+        prompt=f"{selected_processed}\nQuery: {prompt['prompt']}",
         provider=selected_prompt_details["provider"],
         model=selected_prompt_details["model"],
         system_prompt=selected_prompt_details["system_prompt"],

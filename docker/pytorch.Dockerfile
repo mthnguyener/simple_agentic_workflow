@@ -13,8 +13,9 @@ RUN pip3 install --upgrade pip \
 	&& pip3 install --no-cache-dir -r requirements.txt \
 	&& apt update -y \
 	# && apt -y upgrade \
-	&& apt install -y\
+	&& apt install -y \
 		fonts-humor-sans \
+        git \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/lib/apt/lists/* \
 	&& apt clean -y
